@@ -229,37 +229,18 @@
                                        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
                              </pre>
 
-                                <p>Our you can use the grid system with 2 columns like this;</p>
-
+                                <h4> Verificar la Instalación</h4>
+                                <p>Una vez completada la instalación, abre una nueva ventana de PowerShell o CMD y
+                                    ejecuta:</p>
                                 <pre class="brush: html">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
-                                    </div>
-                                </div>
-                            </div>
+                                 choco --version
                          </pre>
-
-                                <p>Our you can use the grid system with 3 columns like this;</p>
+                                <h4>Prueba Rápida</h4>
+                                <p>Instala un paquete simple como 7zip para verificar que Chocolatey funciona
+                                    correctamente:</p>
 
                                 <pre class="brush: html">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
-                                    </div>
-                                </div>
-                            </div>
+                                choco install 7zip -y
                          </pre>
                             </div>
                             <!-- end col -->
