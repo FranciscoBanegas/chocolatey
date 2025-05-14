@@ -245,21 +245,21 @@
                                 </ol>
 
 
-                                <pre class="brush: powershell; highlight: [2,4]">
+                                <pre class="brush: html; highlight: [2,4]">
                                        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
                              </pre>
 
                                 <h4>✅ Verificar la Instalación</h4>
                                 <p>Una vez completada la instalación, abre una nueva ventana de PowerShell o CMD y
                                     ejecuta:</p>
-                                <pre class="brush: powershell">
+                                <pre class="brush: html">
                                  choco --version
                          </pre>
                                 <h4>🧪 Prueba Rápida</h4>
                                 <p>Instala un paquete simple como 7zip para verificar que Chocolatey funciona
                                     correctamente:</p>
 
-                                <pre class="brush: powershell">
+                                <pre class="brush: html">
                                 choco install 7zip -y
                          </pre>
                                 <h4>🛠️ Solución de Problemas Comunes</h4>
@@ -314,7 +314,7 @@
 
                         <h4>🔍 Buscar un paquete</h4>
 
-                        <pre class="brush: powerShell">choco search &lt;keyword&gt;</pre>
+                        <pre class="brush: html">choco search &lt;keyword&gt;</pre>
 
 
                     </section>
