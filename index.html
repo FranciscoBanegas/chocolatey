@@ -409,7 +409,9 @@
                         <p>Un paquete de Chocolatey se basa en un archivo .nuspec, que define los metadatos del paquete.
                         </p>
                         <p><b>Comando para generalo:</b></p>
-                        <pre> choco new nombre-del-paquete</pre>
+                        <pre>
+                            choco new <span class="highlighter-rouge">nombre-del-paquete</span>
+                        </pre>
                         <p>Esto creará una estructura básica de carpeta con:</p>
                         <pre class="brush: html">
                                 mi-paquete/
@@ -439,10 +441,126 @@
                             </package>
                         </pre>
                         <p>No incluir .exe, .msi, etc. en <id>, solo el nombre lógico.</p>
-                        <h4>Agregar el script de instalación</h4>
+                        <h4>Configurar chocolateyInstall.ps1</h4>
                         <hr>
-                        <p>Para crear el script de instalación, abra el archivo chocolateyInstall.ps1</p>
-                        <p>Ubicado en <span class="highlighter-blue">tools\chocolateyInstall.ps1</span>.</p>
+                        <p>Ubicado en <span class="highlighter-blue">tools\chocolateyInstall.ps1</span>. Aquí es donde
+                            se debe aplicar lógica dinámica y práctica.</p>
+                        <h4>Ejemplo:</h4>
+                        <pre class="brush: html">
+                                $ErrorActionPreference = 'Stop' # si algo falla, detener el script
+
+                                $packageName = $env:ChocolateyPackageName # nombre del paquete
+                                $toolsDir    = Split-Path -Parent $MyInvocation.MyCommand.Definition # ruta de la carpeta tools
+
+                                $packageArgs = @{
+                                  packageName    = $packageName # nombre del paquete optenido de .nuspec
+                                  fileType       = 'exe' # tipo de archivo ( exe, msi, etc.)
+                                  url            = 'https://example.com/software_installer.exe' # URL del paquete
+                                  url64bit       = 'https://example.com/software_installer_x64.exe' # URL del paquete 64 bits
+                                  softwareName   = 'Mi Software*' # nombre del software
+                                  silentArgs     = '/S' # argumentos de silencio
+                                  validExitCodes = @(0, 3010) # códigos de salida validos
+                                  checksum       = 'ABCDEF1234567890...' # checksum
+                                  checksumType   = 'sha256' # tipo de checksum
+                                  checksum64     = '1234567890ABCDEF...' # checksum
+                                  checksumType64 = 'sha256' # tipo de checksum
+                                }
+                                
+                                Install-ChocolateyPackage @packageArgs # Instala el paquete
+                        </pre>
+
+                        <h4>📋 Tabla completa de parámetros Install-ChocolateyPackage</h4>
+                        <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Parámetro</th>
+                                    <th>Descripción</th>
+                                    <th>Ejemplo práctico</th>
+                                    <th>Notas</th>
+                                    <th>✅ Obligatorio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>packageName</td>
+                                    <td>Nombre del paquete (referencia lógica interna)</td>
+                                    <td><code>$env:ChocolateyPackageName</code></td>
+                                    <td>Dinámico: evita hardcodear</td>
+                                    <td>✅ Sí</td>
+                                </tr>
+                                <tr>
+                                    <td>fileType</td>
+                                    <td>Tipo de archivo a instalar: <code>exe</code>, <code>msi</code>,
+                                        <code>zip</code>, <code>portable</code></td>
+                                    <td><code>'exe'</code>, <code>'msi'</code>, <code>'zip'</code>,
+                                        <code>'portable'</code></td>
+                                    <td><code>zip</code> requiere extracción; <code>portable</code> necesita scripts
+                                        personalizados</td>
+                                    <td>✅ Sí</td>
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>URL directa al instalador (32 bits o genérico)</td>
+                                    <td><code>'https://example.com/app32.exe'</code></td>
+                                    <td>Si solo tienes una arquitectura, usa solo <code>url</code></td>
+                                    <td>✅ Sí (si no hay <code>url64bit</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>url64bit</td>
+                                    <td>URL directa para sistemas de 64 bits</td>
+                                    <td><code>'https://example.com/app64.exe'</code></td>
+                                    <td>Opcional pero recomendable</td>
+                                    <td>❌ No</td>
+                                </tr>
+                                <tr>
+                                    <td>silentArgs</td>
+                                    <td>Parámetros de instalación silenciosa</td>
+                                    <td><code>'/S'</code>, <code>'/VERYSILENT'</code>, <code>'/qn'</code></td>
+                                    <td>Requiere investigación por tipo de instalador</td>
+                                    <td>✅ Sí</td>
+                                </tr>
+                                <tr>
+                                    <td>validExitCodes</td>
+                                    <td>Códigos de salida válidos tras instalar</td>
+                                    <td><code>@(0)</code>, <code>@(0, 3010)</code></td>
+                                    <td><code>3010</code> = requiere reinicio</td>
+                                    <td>❌ No (pero recomendable)</td>
+                                </tr>
+                                <tr>
+                                    <td>checksum</td>
+                                    <td>Hash SHA del archivo de 32 bits o genérico</td>
+                                    <td><code>'D8B6E8714B8E135D3AF0D4C8A37B39C6B6D30AE28B40B1F01B23A17F72C5197A'</code>
+                                    </td>
+                                    <td>Obligatorio para subir a Chocolatey.org</td>
+                                    <td>✅ Sí (si publicas en chocolatey.org)</td>
+                                </tr>
+                                <tr>
+                                    <td>checksumType</td>
+                                    <td>Algoritmo del checksum (<code>md5</code>, <code>sha1</code>,
+                                        <code>sha256</code>, <code>sha512</code>)</td>
+                                    <td><code>'sha256'</code></td>
+                                    <td><code>sha256</code> es el estándar recomendado</td>
+                                    <td>✅ Sí (si defines <code>checksum</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>checksum64</td>
+                                    <td>Hash SHA del archivo de 64 bits</td>
+                                    <td><code>'19C24B187C5BA942D77A2A07D23E431E51D8A17708F302BC9609A877DAD2F3B9'</code>
+                                    </td>
+                                    <td>Solo necesario si defines <code>url64bit</code></td>
+                                    <td>✅ Sí (si defines <code>url64bit</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>checksumType64</td>
+                                    <td>Algoritmo del checksum64</td>
+                                    <td><code>'sha256'</code></td>
+                                    <td>Debe coincidir con <code>checksum64</code></td>
+                                    <td>✅ Sí (si defines <code>checksum64</code>)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <!-- end row -->
                     </section>
                     <!-- end section -->
