@@ -334,7 +334,64 @@
                         <p>🔁<b>Actualizar todos los paquetes</b></p>
                         <pre class="brush: html">choco upgrade all -y</pre>
                         <hr>
-
+                        <h4>❌ Desinstalar un paquete</h4>
+                        <p>Desinstala el paquete indicado del sistema. El parámetro -y evita que se solicite
+                            confirmación.</p>
+                        <pre class="brush: html">
+                            choco uninstall &lt;paquete&gt; -y
+                        </pre>
+                        <b>Ejemplo</b>
+                        <pre class="brush: html">
+                            choco uninstall vscode -y
+                        </pre>
+                        <hr>
+                        <h4>📄 Ver información de un paquete</h4>
+                        <p> Muestra información detallada sobre un paquete, incluyendo su descripción, versión, autor y
+                            dependencias.</p>
+                        <pre class="brush: html">
+                            choco info &lt;paquete&gt;
+                        </pre>
+                        <b>Ejemplo</b>
+                        <pre class="brush: html">
+                            choco info vscode
+                        </pre>
+                        <hr>
+                        <h4>📋 Listar todos los paquetes</h4>
+                        <pre class="brush: html">
+                            choco list --local-only
+                        </pre>
+                        <p>Muestra todas las versiones disponibles de un paquete específico.</p>
+                        <pre class="brush: html">
+                            choco list &lt;paquete&gt; --all
+                        </pre>
+                        <h4>🛠️ Opciones Útiles</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Opción</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>-y</td>
+                                    <td>Acepta automáticamente todos los mensajes de confirmación.</td>
+                                </tr>
+                                <tr>
+                                    <td>--version </td>
+                                    <td>Especifica una versión exacta para instalar.</td>
+                                </tr>
+                                <tr>
+                                    <td>--pre</td>
+                                    <td>Incluye versiones preliminares o beta en la búsqueda o instalación.</td>
+                                </tr>
+                                <tr>
+                                    <td>--force</td>
+                                    <td>Fuerza la instalación o actualización incluso si ya existe.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
                     <!-- end section -->
 
