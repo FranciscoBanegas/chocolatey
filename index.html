@@ -409,7 +409,7 @@
                         <p>Un paquete de Chocolatey se basa en un archivo .nuspec, que define los metadatos del paquete.
                         </p>
                         <p><b>Comando para generalo:</b></p>
-                        <pre> choco new <span class="highlighter-rouge">nombre-del-paquete</span></pre>
+                        <pre> choco new nombre-del-paquete</pre>
                         <p>Esto creará una estructura básica de carpeta con:</p>
                         <pre class="brush: html">
                                 mi-paquete/
@@ -439,7 +439,10 @@
                             </package>
                         </pre>
                         <p>No incluir .exe, .msi, etc. en <id>, solo el nombre lógico.</p>
-
+                        <h4>Agregar el script de instalación</h4>
+                        <hr>
+                        <p>Para crear el script de instalación, abra el archivo chocolateyInstall.ps1</p>
+                        <p>Ubicado en <span class="highlighter-blue">tools\chocolateyInstall.ps1</span>.</p>
                         <!-- end row -->
                     </section>
                     <!-- end section -->
