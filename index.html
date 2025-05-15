@@ -143,7 +143,7 @@
                         <ul class="nav">
                             <li><a href="#line1">🔧 Instalación de Chocolatey</a></li>
                             <li><a href="#line2">⚙️ Comandos Básicos</a></li>
-                            <li><a href="#line3">Creacion de paquete</a></li>
+                            <li><a href="#line3">📦 Creacion de paquete</a></li>
                             <li><a href="#line4">Necessary Plugins</a></li>
                             <li><a href="#line5">Creating Blog Pages</a></li>
                             <li><a href="#line6">Revolution Slider</a></li>
@@ -397,16 +397,20 @@
 
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Creacion de paquete
+                                <h2 class="dark-text">📦 Creacion de paquete
                                     <hr>
                                 </h2>
                             </div>
                             <!-- end col -->
                         </div>
 
-                        <h4>Estrutura de un paquete</h4>
-                        <p>Si bien no es una necesario, se recomienda organizar la estructura del paquete de la
-                            siguiente manera:</p>
+                        <h4>Crear el archivo .nuspec</h4>
+                        <hr>
+                        <p>Un paquete de Chocolatey se basa en un archivo .nuspec, que define los metadatos del paquete.
+                        </p>
+                        <p><b>Comando para generalo:</b></p>
+                        <pre> choco new <span class="highlighter-rouge">nombre-del-paquete</span></pre>
+                        <p>Esto creará una estructura básica de carpeta con:</p>
                         <pre class="brush: html">
                                 mi-paquete/
                                 ├── mi-paquete.nuspec      # Archivo de manifiesto
@@ -414,9 +418,29 @@
                                     ├── chocolateyInstall.ps1  # Script de instalación
                                     └── (opcional) chocolateyUninstall.ps1  # Script de desinstalación
                         </pre>
+                        <h4>Editar el archivo .nuspec</h4>
+                        <hr>
+                        <p>Abra el archivo .nuspec y edite los metadatos del paquete.</p>
+                        <p><b>Los metadatos principales son:</b></p>
+                        <pre class="brush: html">
+                            <package>
+                                <metadata>
+                                    <id>nombre-del-paquete</id>
+                                    <version>1.0.0</version>
+                                    <title>Título descriptivo</title>
+                                    <authors>TuNombre</authors>
+                                    <description>Descripción detallada del paquete.</description>
+                                    <projectUrl>https://sitio-del-proyecto</projectUrl>
+                                    <tags>palabras clave</tags>
+                                    <dependencies>
+                                    <dependency id="otro-paquete" version="1.0.0" />
+                                    </dependencies>
+                                </metadata>
+                            </package>
+                        </pre>
+                        <p>No incluir .exe, .msi, etc. en <id>, solo el nombre lógico.</p>
+
                         <!-- end row -->
-
-
                     </section>
                     <!-- end section -->
 
