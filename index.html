@@ -143,7 +143,7 @@
                         <ul class="nav">
                             <li><a href="#line1">🔧 Instalación de Chocolatey</a></li>
                             <li><a href="#line2">⚙️ Comandos Básicos</a></li>
-                            <li><a href="#line3">How to Install Theme</a></li>
+                            <li><a href="#line3">Creacion de paquete</a></li>
                             <li><a href="#line4">Necessary Plugins</a></li>
                             <li><a href="#line5">Creating Blog Pages</a></li>
                             <li><a href="#line6">Revolution Slider</a></li>
@@ -403,6 +403,17 @@
                             </div>
                             <!-- end col -->
                         </div>
+
+                        <h4>Estrutura de un paquete</h4>
+                        <p>Si bien no es una necesario, se recomienda organizar la estructura del paquete de la
+                            siguiente manera:</p>
+                        <pre class="brush: html">
+                                mi-paquete/
+                                ├── mi-paquete.nuspec      # Archivo de manifiesto
+                                └── tools/
+                                    ├── chocolateyInstall.ps1  # Script de instalación
+                                    └── (opcional) chocolateyUninstall.ps1  # Script de desinstalación
+                        </pre>
                         <!-- end row -->
 
 
