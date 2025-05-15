@@ -315,9 +315,26 @@
                         <h4>🔍 Buscar un paquete</h4>
                         <p> Busca paquetes disponibles en el repositorio oficial de Chocolatey que coincidan con el
                             nombre o parte del nombre indicado.</p>
-                        <pre class="brush: html">choco search &lt;keyword&gt;</pre>
+                        <pre class="brush: html">choco search &lt;busqueda&gt;</pre>
                         <b>Ejemplo</b>
                         <pre class="brush: html">choco search vscode</pre>
+                        <hr>
+                        <h4>📥 Instalar un paquete</h4>
+                        <p> Instala el paquete especificado. El modificador -y acepta automáticamente los términos de
+                            licencia y omite las confirmaciones.</p>
+                        <pre class="brush: html">choco install &lt;paquete&gt;</pre>
+                        <b>Ejemplo</b>
+                        <pre class="brush: html">choco install vscode</pre>
+                        <hr>
+                        <h4>🔁 Actualizar un paquete</h4>
+                        <p>Actualiza el paquete especificado a su versión más reciente disponible.</p>
+                        <pre class="brush: html">choco upgrade &lt;paquete&gt;</pre>
+                        <b>Ejemplo</b>
+                        <pre class="brush: html">choco upgrade vscode</pre>
+                        <p>🔁<b>Actualizar todos los paquetes</b></p>
+                        <pre class="brush: html">choco upgrade all -y</pre>
+                        <hr>
+
                     </section>
                     <!-- end section -->
 
