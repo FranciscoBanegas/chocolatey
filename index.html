@@ -591,7 +591,7 @@
                         <hr>
                         <p>A Continuación, se detalla algunos ejemplos de parámetros mostrado previamente:</p>
 
-                        <h5><b>¿Cómo generar un checksum?</b></h5>
+                        <h5><b>🔐 ¿Cómo generar un checksum?</b></h5>
                         <p>Un checksum (hash) es una firma digital única de un archivo. Chocolatey los usa para
                             verificar que el archivo descargado no fue modificado ni corrompido.
                         </p>
@@ -608,6 +608,40 @@
                             <li>Usa solo el valor de Hash en tu script (checksum = '...')</li>
                             <li>Usa sha256 como valor para checksumType</li>
                         </ul>
+                        <h5><b>💥 ¿Qué son los validExitCodes?</b></h5>
+                        <p>Son los códigos de salida que Chocolatey considerará como una instalación exitosa.</p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Significado</th>
+                                    <th>Acción de Chocolatey</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0</td>
+                                    <td>Instalación exitosa</td>
+                                    <td>✅ OK</td>
+                                </tr>
+                                <tr>
+                                    <td>3010</td>
+                                    <td>Instalación correcta, pero requiere reinicio</td>
+                                    <td>⚠️ Avisa, pero no falla</td>
+                                </tr>
+                                <tr>
+                                    <td>1, 1603, etc</td>
+                                    <td>Error de instalación</td>
+                                    <td>❌ Error (a menos que lo permitas)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5>🔧 ¿Cómo definirlos?</h5>
+                        <pre class="brush: html">
+                            validExitCodes = @(0, 3010)
+                        </pre>
+                        <p>Si no incluyes 3010 y el instalador lo devuelve, Chocolatey mostrará que falló aunque no sea
+                            así.</p>
                         <!-- end row -->
                     </section>
                     <!-- end section -->
