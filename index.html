@@ -143,7 +143,11 @@
                         <ul class="nav">
                             <li><a href="#line1">🔧 Instalación de Chocolatey</a></li>
                             <li><a href="#line2">⚙️ Comandos Básicos</a></li>
-                            <li><a href="#line3">📦 Creacion de paquete</a></li>
+                            <li><a href="#line3">📦 Creacion de paquete</a>
+                                <ul class="nav">
+                                    <li><a href="#line2_1">Parámetros </a></li>
+                                </ul>
+                            </li>
                             <li><a href="#line4">Necessary Plugins</a></li>
                             <li><a href="#line5">Creating Blog Pages</a></li>
                             <li><a href="#line6">Revolution Slider</a></li>
@@ -492,9 +496,11 @@
                                 <tr>
                                     <td>fileType</td>
                                     <td>Tipo de archivo a instalar: <code>exe</code>, <code>msi</code>,
-                                        <code>zip</code>, <code>portable</code></td>
+                                        <code>zip</code>, <code>portable</code>
+                                    </td>
                                     <td><code>'exe'</code>, <code>'msi'</code>, <code>'zip'</code>,
-                                        <code>'portable'</code></td>
+                                        <code>'portable'</code>
+                                    </td>
                                     <td><code>zip</code> requiere extracción; <code>portable</code> necesita scripts
                                         personalizados</td>
                                     <td>✅ Sí</td>
@@ -538,7 +544,8 @@
                                 <tr>
                                     <td>checksumType</td>
                                     <td>Algoritmo del checksum (<code>md5</code>, <code>sha1</code>,
-                                        <code>sha256</code>, <code>sha512</code>)</td>
+                                        <code>sha256</code>, <code>sha512</code>)
+                                    </td>
                                     <td><code>'sha256'</code></td>
                                     <td><code>sha256</code> es el estándar recomendado</td>
                                     <td>✅ Sí (si defines <code>checksum</code>)</td>
@@ -560,7 +567,7 @@
                                 </tr>
                             </tbody>
                         </table>
-
+                        <h4 id="line2_1">Parametros ejemplo</h4>
                         <!-- end row -->
                     </section>
                     <!-- end section -->
