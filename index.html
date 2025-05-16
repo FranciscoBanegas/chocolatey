@@ -636,12 +636,50 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <h5>🔧 ¿Cómo definirlos?</h5>
+                        <h5><span>🔧 ¿Cómo definirlos? </span></h5>
                         <pre class="brush: html">
                             validExitCodes = @(0, 3010)
                         </pre>
-                        <p>Si no incluyes 3010 y el instalador lo devuelve, Chocolatey mostrará que falló aunque no sea
-                            así.</p>
+                        <p>Si no incluyes 3010 y el instalador lo mostrará que falló aunque no sea así.</p>
+                        <h5><span>🤫 SilentArgs por tipo de instalador</span></h5>
+                        <p>Cada tipo de instalador usa parámetros distintos para instalación silenciosa (sin GUI ni
+                            interacción)</p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de instalador</th>
+                                    <th>silentArgs típicos </th>
+                                    <th>Notas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>NSIS</td>
+                                    <td>/S</td>
+                                    <td>Mayúscula obligatoria</td>
+                                </tr>
+                                <tr>
+                                    <td>InnoSetup</td>
+                                    <td>/VERYSILENT /SUPPRESSMSGBOXES</td>
+                                    <td>Recomendado añadir /NORESTART</td>
+                                </tr>
+                                <tr>
+                                    <td>MSI</td>
+                                    <td>/s</td>
+                                    <td>A veces necesita un archivo setup.iss</td>
+                                </tr>
+                                <tr>
+                                    <td>SFX (WinRAR/7z) </td>
+                                    <td>/s</td>
+                                    <td>Limitado, depende de cómo se generó</td>
+                                </tr>
+                                <tr>
+                                    <td>EXE genérico</td>
+                                    <td>Investigar con /?, /h, -?, --help</td>
+                                    <td>Prueba manualmente en consola</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <!-- end row -->
                     </section>
                     <!-- end section -->
