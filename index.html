@@ -418,7 +418,7 @@
                         </p>
                         <p><b>Comando para generalo:</b></p>
                         <pre class="brush: html">
-                            choco new <span class="highlighter-rouge">nombre-del-paquete</span>
+                            choco new nombre-del-paquete
                         </pre>
                         <p>Esto creará una estructura básica de carpeta con:</p>
                         <pre class="brush: html">
@@ -587,9 +587,27 @@
                             <li>(y si usas url64bit, también checksum64 y checksumType64)</li>
                         </ul>
 
-                        <h3 id="line2_1">Parametros ejemplo</h3>
+                        <h4 id="line2_1">Parametros ejemplo</h4>
                         <hr>
+                        <p>A Continuación, se detalla algunos ejemplos de parámetros mostrado previamente:</p>
 
+                        <h5><b>¿Cómo generar un checksum?</b></h5>
+                        <p>Un checksum (hash) es una firma digital única de un archivo. Chocolatey los usa para
+                            verificar que el archivo descargado no fue modificado ni corrompido.
+                        </p>
+                        <pre class="brush: powershell">
+                            Get-FileHash -Path "C:\ruta\al\archivo.exe" -Algorithm SHA256
+                        </pre>
+                        <p><b>Salida:</b></p>
+                        <pre class="brush: powershell">
+                            Algorithm : SHA256
+                            Hash      : 6A9F0D07A4BD3D129DB16D75F1C8A5A3D87A1CDBEF32C3DCA4C223EAA63B7709
+                            Path      : C:\ruta\al\archivo.exe
+                        </pre>
+                        <ul class="ul-list">
+                            <li>Usa solo el valor de Hash en tu script (checksum = '...')</li>
+                            <li>Usa sha256 como valor para checksumType</li>
+                        </ul>
                         <!-- end row -->
                     </section>
                     <!-- end section -->
