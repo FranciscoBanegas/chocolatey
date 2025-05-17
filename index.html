@@ -152,7 +152,7 @@
                                     <li><a href="#line2_1">Parámetros </a></li>
                                 </ul>
                             </li>
-                            <li><a href="#line4">Necessary Plugins</a></li>
+                            <li><a href="#line4">Aprovisionamiento</a></li>
                             <li><a href="#line5">Creating Blog Pages</a></li>
                             <li><a href="#line6">Revolution Slider</a></li>
                             <!-- <li><a href="#line7">How to Use Option Panel</a>
@@ -449,11 +449,13 @@
                             </package>
                         </pre>
                         <p>No incluir .exe, .msi, etc. en <id>, solo el nombre lógico.</p>
+                        <p>Campos obligatorios (<code
+                                class="highlighter-rogue"> id, version, authors, description</code>).</p>
                         <h4>Configurar chocolateyInstall.ps1</h4>
                         <hr>
                         <p>Ubicado en <span class="highlighter-blue">tools\chocolateyInstall.ps1</span>. Aquí es donde
                             se debe aplicar lógica dinámica y práctica.</p>
-                        <h4>Ejemplo:</h4>
+                        <h4>Ejemplo de instalación online:</h4>
                         <pre class="brush: html">
                                 $ErrorActionPreference = 'Stop' # si algo falla, detener el script
 
@@ -476,7 +478,24 @@
                                 
                                 Install-ChocolateyPackage @packageArgs # Instala el paquete
                         </pre>
+                        <h4>Ejemplo de instalación local:</h4>
+                        <pre class="brush: html">
+                            $ErrorActionPreference = 'Stop'
 
+                            $packageName = $env:ChocolateyPackageName
+                            $toolsDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+                            $installerPath = Join-Path $toolsDir 'mi-app.exe'
+
+                            $packageArgs = @{
+                              packageName   = $packageName  # nombre del paquete
+                              fileType      = 'exe'  # o 'msi' según el caso
+                              file          = $installerPath
+                              silentArgs    = '/S'  # o '/quiet' para msi
+                              validExitCodes = @(0, 3010)
+                            }
+
+                            Install-ChocolateyInstallPackage @packageArgs
+                        </pre>
                         <h4>📋 Tabla completa de parámetros Install-ChocolateyPackage</h4>
                         <hr>
                         <table class="table">
@@ -724,6 +743,7 @@
                             choco install nombredelpaquete -s .
                         </pre>
                         <p>El parámetro -s . (source local) hace que use el .nupkg en el directorio actual.</p>
+
                         <!-- end row -->
                     </section>
                     <!-- end section -->
