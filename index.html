@@ -688,6 +688,42 @@
                         <pre class="brush: html">
                             Start-Process ".\archivo.exe" -ArgumentList '/?' -Wait
                         </pre>
+                        <h5><span>🧠 ¿Cuándo usar url y url64bit?</span></h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Escenario</th>
+                                    <th>¿Qué usar? </th>
+                                    <th>Ejemplo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Un solo instalador para todas las arquitecturas </td>
+                                    <td>Instaladores diferentes para 32 y 64 bits </td>
+                                </tr>
+                                <tr>
+                                    <td>Solo url</td>
+                                    <td>url y url64bit</td>
+                                </tr>
+                                <tr>
+                                    <td>'https://ejemplo.com/setup.exe'</td>
+                                    <td>'setup32.exe', 'setup64.exe'</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>Chocolatey instalará la versión adecuada según la arquitectura del sistema:</p>
+                        <pre class="brush: html">
+                            $url = 'https://ejemplo.com/setup32.exe'
+                            $url64 = 'https://ejemplo.com/setup64.exe'
+                        </pre>
+                        <p>Y debes incluir ambos checksum y checksum64.</p>
+                        <h5><span>🛠️ Extra: cómo probar localmente tu paquete</span></h5>
+                        <pre class="brush: html">
+                            choco pack
+                            choco install nombredelpaquete -s .
+                        </pre>
+                        <p>El parámetro -s . (source local) hace que use el .nupkg en el directorio actual.</p>
                         <!-- end row -->
                     </section>
                     <!-- end section -->
