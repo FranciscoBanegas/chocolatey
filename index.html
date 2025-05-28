@@ -152,7 +152,7 @@
                                     <li><a href="#line2_1">Parámetros </a></li>
                                 </ul>
                             </li>
-                            <li><a href="#line4">Aprovisionamiento</a></li>
+                            <li><a href="#line4">🧰 Aprovisionamiento</a></li>
                             <li><a href="#line5">Creating Blog Pages</a></li>
                             <li><a href="#line6">Revolution Slider</a></li>
                             <!-- <li><a href="#line7">How to Use Option Panel</a>
@@ -832,16 +832,96 @@
                                 </tbody>
                             </table>
                             <!-- end col -->
+                             <h4><b>🧠 Piensa en el paquete de aprovisionamiento como:</b></h4>
+                             <ul class="ul-list">
+                                <li>Un script instalador empaquetado como .nupkg.</li>
+                                <li>Un instalador todo-en-uno.</li>
+                                <li>Un sustituto moderno de los .bat o .cmd que usabas para preparar PCs.</li>
+                             </ul>
+                             <h2>🧱 Crear la estructura del paquete</h2>
+                            <p>Abre PowerShell y ejecuta:</p>
+                            <pre class="brush: html">
+                                choco new aprovisionamiento-inicial
+                                cd aprovisionamiento-inicial
+                            </pre>
+                            <p>Esto crea una carpeta con esta estructura:</p>
+                            <pre class="brush: html">
+                                aprovisionamiento-inicial/
+                                ├── aprovisionamiento-inicial.nuspec
+                                └── tools/
+                                    └── chocolateyInstall.ps1
+                            </pre>
+                            <h4>🛠️ Editar el archivo .nuspec</h4>
+                            <p>Abre aprovisionamiento-inicial.nuspec y ajusta:</p>
+                            <pre class="brush: html">
+                                <?xml version="1.0"?>
+                                <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+                                  <metadata>
+                                    <id>aprovisionamiento-inicial</id>
+                                    <version>1.0.0</version>
+                                    <title>Aprovisionamiento Inicial</title>
+                                    <authors>TuNombre</authors>
+                                    <owners>TuNombre</owners>
+                                    <description>Instala aplicaciones comunes y ejecuta configuraciones.</description>
+                                    <tags>aprovisionamiento chocolatey automatizacion</tags>
+                                  </metadata>
+                                </package>
+                            </pre>
+                            <h4>🧾 Preparar el instalador local</h4>
+                            <p>Crea una carpeta dentro de tools llamada instaladores:</p>
+                            <pre class="brush: html">
+                                mkdir tools\instaladores
+                            </pre>
+                            <p>Y pon ahí tu archivo <code>MiApp.exe</code>. Puedes usar un ejecutable de prueba o un dummy por ahora.</p>
+                            <h4>⚙️ Editar tools\chocolateyInstall.ps1</h4>
+                            <p>Reemplaza todo el contenido con lo siguiente:</p>
+                            <pre class="brush: html">
+                                $ErrorActionPreference = 'Stop'
+
+                                # Instalar software desde Chocolatey
+                                choco install googlechrome -y
+                                choco install vlc -y
+                                choco install notepadplusplus -y
+
+                                # Ejecutar instalador local (instalación silenciosa)
+                                $exePath = Join-Path $PSScriptRoot 'instaladores\MiApp.exe'
+                                if (Test-Path $exePath) {
+                                    Start-Process -FilePath $exePath -ArgumentList '/S' -Wait
+                                } else {
+                                    Write-Warning "Instalador local no encontrado: $exePath"
+                                }
+
+                                # Crear accesos directos
+                                $shortcutDir = "$env:Public\Desktop\Aprovisionamiento"
+                                New-Item -ItemType Directory -Path $shortcutDir -Force | Out-Null
+
+                                $apps = @(
+                                    @{ Name = "Google Chrome"; Path = "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe" },
+                                    @{ Name = "VLC"; Path = "${env:ProgramFiles}\VideoLAN\VLC\vlc.exe" },
+                                    @{ Name = "Notepad++"; Path = "${env:ProgramFiles}\Notepad++\notepad++.exe" }
+                                )
+
+                                foreach ($app in $apps) {
+                                    if (Test-Path $app.Path) {
+                                        $WScriptShell = New-Object -ComObject WScript.Shell
+                                        $shortcut = $WScriptShell.CreateShortcut("$shortcutDir\$($app.Name).lnk")
+                                        $shortcut.TargetPath = $app.Path
+                                        $shortcut.Save()
+                                    }
+                                }
+
+                                # Configuración personalizada
+                                Write-Host "Configuración personalizada completada."
+                            </pre>
+                            <h4>📦 Empaquetar el .nupkg</h4>
+                            <p>Desde la raíz del paquete:</p>
+                            <pre class="brush: html">choco pack</pre>
+                            <p>Esto creara un archivo <code>aprovisionamiento-inicial.1.0.0.nupkg</code></p>
+                            <h4>🚀 Instalar el paquete</h4>
+                            <p>Desde el mismo directorio:</p>
+                            <pre class="brush: html">choco install aprovisionamiento-inicial --source . --yes</pre>
+                            <p class="borde-left">Chocolatey ejecutará las acciones definidas: instalación de apps, ejecución del EXE y creación de accesos directos.</p>
                         </div>
-                        <!-- end row -->
-
-                        <div class="row">
-
-                            
-
-                        </div>
-                        <!-- end row -->
-
                     </section>
                     <!-- end section -->
 
