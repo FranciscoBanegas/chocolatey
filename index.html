@@ -737,7 +737,7 @@
                             $url64 = 'https://ejemplo.com/setup64.exe'
                         </pre>
                         <p>Y debes incluir ambos checksum y checksum64.</p>
-                        <h5><b>🛠️ Extra: cómo probar localmente tu paquete</b></h5>
+                        <h5><b>🛠️ Cómo probar localmente tu paquete</b></h5>
                         <pre class="brush: html">
                             choco pack
                             choco install nombredelpaquete -s .
@@ -752,54 +752,93 @@
 
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Necessary Plugins
+                                <h2 class="dark-text">Aprovisionamiento
                                     <hr>
                                 </h2>
                             </div>
+                            <h4>Cual es la diferencias entre un paquete normal y uno de aprovisionamiento ? </h4>
+                            <hr>
+                            <br>
+                            <p>La diferencia entre un paquete normal de Chocolatey y uno de aprovisionamiento está en su objetivo y alcance, no tanto en la estructura técnica (que es casi igual).</p>
+                            <br>
+                            <h4>✅ Paquete normal</h4>
+                            <p class="border-left">Es un paquete que instala una sola aplicación específica.</p>
+                            <p><b>Ejemplo:</b></p>
+                            <pre class="brush: html">
+                                choco install vlc
+                            </pre>
+                            <br>
+                            <h4>🧰 Paquete de aprovisionamiento/h4>
+                            <p class="border-left">Es un paquete personalizado que instala y configura múltiples cosas a la vez: programas, configuraciones, scripts, accesos directos, etc.</p>
+                            <p><b>Ejemplo:</b></p>
+                            <pre class="brush: html">
+                                choco install mi-paquete-de-aprovisionamiento --source .
+                            </pre>
+                            <p><b>Esto puede:</b></p>
+                            <ul class="ul-list">
+                                <li>Instalar varios programas (Chrome, VLC, 7-Zip…).</li>
+                                <li>Ejecutar scripts de configuración o limpieza.</li>
+                                <li>Crear accesos directos personalizados.</li>
+                                <li>Aplicar configuraciones al sistema.</li>
+                                <li>Instalar aplicaciones propias desde archivos locales.</li>
+                            </ul>
+                            <p><b>📦 El paquete mi-aprovisionamiento:</b></p>
+                            <ul class="ul-list">
+                                <li>Es creado por ti o tu equipo.</li>
+                                <li>Usa un solo chocolateyInstall.ps1 con múltiples acciones.</li>
+                                <li>Actúa como una “macro” de instalación y configuración.</li>
+                            </ul>
+                            <br>
+                            <h2>Diferencias clave</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Característica</th>
+                                        <th>Paquete normal</th>
+                                        <th>Paquete de aprovisionamiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Propósito</td>
+                                        <td>Instala una sola aplicación</td>
+                                        <td>Instala y configura múltiples cosas a la vez</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Instalación múltiple</td>
+                                        <td>No</td>
+                                        <td>Si</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Contenido</th>
+                                        <td>Binarios de una app</td>
+                                        <td>Scripts, accesos directos, apps, etc</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fuente común</td>
+                                        <td>Repositorio de Chocolatey</td>
+                                        <td>Personal o interno</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ideal para...</td>
+                                        <td>Usuarios finales</td>
+                                        <td>Técnicos, IT, imágenes base</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customización</td>
+                                        <td>Muy limitada</td>
+                                        <td>Total (scripts PowerShell)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <!-- end col -->
                         </div>
                         <!-- end row -->
 
                         <div class="row">
-                            <div class="col-md-4">
-                                <img src="images/upload/plugin1.png" alt="" class="img-responsive img-thumbnail">
-                                <h4>Plugin name #1</h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please
-                                    read more about WordPress here.</p>
-                            </div>
-                            <!-- end col -->
 
-                            <div class="col-md-4">
-                                <img src="images/upload/plugin2.png" alt="" class="img-responsive img-thumbnail">
-                                <h4>Plugin name #2</h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please
-                                    read more about WordPress here.</p>
-                            </div>
-                            <!-- end col -->
+                            
 
-                            <div class="col-md-4">
-                                <img src="images/upload/plugin3.png" alt="" class="img-responsive img-thumbnail">
-                                <h4>Plugin name #3</h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please
-                                    read more about WordPress here.</p>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-12">
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the
-                                    readable content of a page when looking at its layout. The point of using Lorem
-                                    Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
-                                    using 'Content here, content here', making it look like readable English. long
-                                    established fact that a reader will be distracted by the readable content of a page
-                                    when looking at its layout. The point of using Lorem Ipsum is that it has a
-                                    more-or-less normal distribution of letters, as opposed to using 'Content here,
-                                    content here', making it look like readable English.</p>
-
-                                <div class="text-center">
-                                    <a href="#" class="btn btn-primary">Get a Installation Service</a> <a href="#"
-                                        class="btn btn-info">Ask a Question</a>
-                                </div>
-                            </div>
                         </div>
                         <!-- end row -->
 
