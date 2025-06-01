@@ -371,7 +371,10 @@
                         <pre class="brush: html">
                            choco list -i 
                         </pre>
-                        <h4>🛠️ Opciones Útiles</h4>
+                        <h2>🛠️ Parametros Útiles</h2>
+                        <hr>
+                        <h4>📘 AYUDA Y SOPORTE</h4>
+                        <hr>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -380,23 +383,237 @@
                                 </tr>
                             </thead>
                             <tr>
-                                <td>-y</td>
-                                <td>Acepta automáticamente todos los mensajes de confirmación.</td>
+                                <td>-?, --help, -h</td>
+                                <td>Muestra el menú de ayuda del comando.</td>
                             </tr>
                             <tr>
-                                <td>--version </td>
-                                <td>Especifica una versión exacta para instalar.</td>
-                            </tr>
-                            <tr>
-                                <td>--pre</td>
-                                <td>Incluye versiones preliminares o beta en la búsqueda o instalación.</td>
-                            </tr>
-                            <tr>
-                                <td>--force</td>
-                                <td>Fuerza la instalación o actualización incluso si ya existe.
-                                </td>
+                                <td>--online </td>
+                                <td>Abre la documentación del comando en el navegador. Solo funciona con --help.</td>
                             </tr>
                         </table>
+                        <p><b>Ejemplo:</b></p>
+                        <pre>
+                            choco install git --help
+                        </pre>
+                        <h4>🐞 DEPURACIÓN Y VERBOSIDAD</h4>
+                        <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Opción</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>-d, --debug</td>
+                                <td>Muestra mensajes de depuración. Útil para ver lo que pasa internamente.</td>
+                            </tr>
+                            <tr>
+                                <td>-v, --verbose</td>
+                                <td>Muestra mensajes más detallados. No recomendado para uso normal.</td>
+                            </tr>
+                            <tr>
+                                <td>--trace</td>
+                                <td>Nivel aún más detallado que verbose. Muy técnico.</td>
+                            </tr>
+                            <tr>
+                                <td>--nocolor</td>
+                                <td>Elimina el color de los mensajes en consola. Útil en logs.</td>
+                            </tr>
+                        </table>
+                        <h4>✅ COMPORTAMIENTO AUTOMÁTICO</h4>
+                        <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Opción</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>--acceptlicense</td>
+                                <td>Acepta automáticamente las licencias. (Futuro uso).</td>
+                            </tr>
+                            <tr>
+                                <td>-y, --yes, --confirm</td>
+                                <td>Acepta todas las preguntas (instalación/desinstalación). Implica --accept-license.</td>
+                            </tr>
+                            <tr>
+                                <td>-f, --force</td>
+                                <td>Fuerza la acción, incluso si hay advertencias. Usar con precaución.</td>
+                            </tr>
+                            <tr>
+                                <td>--noop, --whatif</td>
+                                <td>Simula la acción sin ejecutarla realmente.</td>
+                            </tr>
+                        </table>
+                        <h4>📊 SALIDA Y LOGS</h4>
+                        <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Opción</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>-r, --limitoutput</td>
+                                <td>Muestra solo información esencial.</td>
+                            </tr>
+                            <tr>
+                                <td>-y, --yes, --confirm</td>
+                                <td>Acepta todas las preguntas (instalación/desinstalación). Implica --accept-license.</td>
+                            </tr>
+                            <tr>
+                                <td>--timeout=SEGUNDOS</td>
+                                <td>Cambia el tiempo máximo de espera por comando. 0 = sin límite.</td>
+                            </tr>
+                            <tr>
+                                <td>--log-file=archivo.log</td>
+                                <td>Guarda los logs en un archivo adicional.</td>
+                            </tr>
+                        </table>
+                             <h4>🌐 RED Y PROXY</h4>
+                        <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Opción</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>--proxy=URL</td>
+                                <td>Usa un proxy específico para las descargas.</td>
+                            </tr>
+                            <tr>
+                                <td>--proxy-user, --proxy-password</td>
+                                <td>Credenciales del proxy.</td>
+                            </tr>
+                            <tr>
+                                <td>--proxy-bypass-list, --proxy-bypass-on-local</td>
+                                <td>Especifica excepciones para el proxy.</td>
+                            </tr>
+                        </table>
+                        <h4>📦 PAQUETES</h4>
+                        <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Opción</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td>-s, --source=URL o nombre</td>
+                                <td>Fuente de donde instalar (repositorio).</td>
+                            </tr>
+                            <tr>
+                                <td>--version=VERSIÓN</td>
+                                <td>Especifica versión del paquete a instalar/desinstalar.</td>
+                            </tr>
+                            <tr>
+                                <td>-a, --allversions</td>
+                                <td>Desinstala todas las versiones del paquete.</td>
+                            </tr>
+                        </table>
+                        <h4>🔧 ARGUMENTOS Y PARÁMETROS</h4>
+                        <hr>
+                        <table class="table">
+    <thead>
+        <tr>
+            <th>Opción</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>--params, --parameters, --pkgparameters, --packageparameters, --package-parameters=VALUE</td>
+        <td>Parámetros personalizados para pasar al paquete.</td>
+    </tr>
+    <tr>
+        <td>--argsglobal, --args-global, --installargsglobal, --install-args-global, --applyargstodependencies, --apply-args-to-dependencies, --apply-install-arguments-to-dependencies</td>
+        <td>Aplica argumentos de instalación a los paquetes dependientes.</td>
+    </tr>
+    <tr>
+        <td>--paramsglobal, --params-global, --packageparametersglobal, --package-parameters-global, --applyparamstodependencies, --apply-params-to-dependencies, --apply-package-parameters-to-dependencies</td>
+        <td>Aplica parámetros del paquete a los paquetes dependientes.</td>
+    </tr>
+    <tr>
+        <td>-o, --override, --overrideargs, --overridearguments, --override-arguments</td>
+        <td>Usa únicamente los argumentos proporcionados, sin añadir otros.</td>
+    </tr>
+    <tr>
+        <td>--notsilent, --not-silent</td>
+        <td>No desinstala en modo silencioso.</td>
+    </tr>
+</table>
+<h4>🧰 OTROS</h4>
+<hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Opción</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>-x, --forcedependencies, --force-dependencies, --removedependencies, --remove-dependencies</td>
+        <td>Desinstala las dependencias junto con el paquete.</td>
+    </tr>
+    <tr>
+        <td>-n, --skippowershell, --skip-powershell, --skipscripts, --skip-scripts, --skip-automation-scripts</td>
+        <td>No ejecuta los scripts PowerShell del paquete.</td>
+    </tr>
+    <tr>
+        <td>--ignorepackagecodes, --ignorepackageexitcodes, --ignore-package-codes, --ignore-package-exit-codes</td>
+        <td>Ignora los códigos de salida de los scripts del paquete y usa 0 o 1 como salida global.</td>
+    </tr>
+    <tr>
+        <td>--usepackagecodes, --usepackageexitcodes, --use-package-codes, --use-package-exit-codes</td>
+        <td>Usa los códigos de salida definidos por los scripts del paquete como salida global.</td>
+    </tr>
+    <tr>
+        <td>--autouninstaller, --use-autouninstaller</td>
+        <td>Usa el desinstalador automático de Chocolatey.</td>
+    </tr>
+    <tr>
+        <td>--skipautouninstaller, --skip-autouninstaller</td>
+        <td>Omite el uso del desinstalador automático.</td>
+    </tr>
+    <tr>
+        <td>--failonautouninstaller, --fail-on-autouninstaller</td>
+        <td>Falla la desinstalación si el desinstalador automático tiene errores.</td>
+    </tr>
+    <tr>
+        <td>--ignoreautouninstallerfailure, --ignore-autouninstaller-failure</td>
+        <td>No falla si el desinstalador automático encuentra errores.</td>
+    </tr>
+    <tr>
+        <td>--stoponfirstfailure, --stop-on-first-failure, --stop-on-first-package-failure</td>
+        <td>Detiene la instalación/desinstalación si falla el primer paquete.</td>
+    </tr>
+    <tr>
+        <td>--exitwhenrebootdetected, --exit-when-reboot-detected</td>
+        <td>Finaliza si se detecta que el sistema requiere reinicio.</td>
+    </tr>
+    <tr>
+        <td>--ignoredetectedreboot, --ignore-detected-reboot</td>
+        <td>Ignora si se detecta que el sistema requiere reinicio.</td>
+    </tr>
+    <tr>
+        <td>--skiphooks, --skip-hooks</td>
+        <td>No ejecuta scripts de gancho (hooks).</td>
+    </tr>
+    <tr>
+        <td>--fromprograms, --from-programs, --fromprogramsandfeatures, --from-programs-and-features</td>
+        <td>Desinstala un programa usando su nombre en “Programas y características” (solo versión licenciada).</td>
+    </tr>
+    <tr>
+        <td>--use-self-service, --force-self-service</td>
+        <td>Fuerza el uso de autoservicio si está habilitado (solo versiones empresariales).</td>
+    </tr>
+</table>
+
                     </section>
                     <!-- end section -->
 
