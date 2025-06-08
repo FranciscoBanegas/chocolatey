@@ -98,106 +98,36 @@
         ul.ul-list li {
             list-style: disc;
         }
-
-        /* Contenedor principal de la tabla con la clase .table */
+/* Trabajamos dentro del contenedor padre con la clase .table 
+*/
 .table {
-  margin: 2rem auto;
-  width: 90%;
-  font-family: sans-serif;
+  /* Asegura que el contenedor no tenga más ancho que la pantalla */
+  width: 100%; 
+}
 
-  /* --- Estilos Base para la tabla (Vista de Escritorio) --- */
-  table {
-    width: 100%;
-    border-collapse: collapse; /* Une los bordes de las celdas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-  }
+.table table {
+  /* 1. La tabla siempre ocupará el 100% de su contenedor (.table) */
+  width: 100%;
+  
+  /* 2. CLAVE: El navegador no intentará ajustar las columnas al contenido, 
+     sino que las distribuirá equitativamente. Esto evita que una columna 
+     larga "empuje" a las demás. */
+  table-layout: fixed;
 
-  /* Estilos para celdas de encabezado (th) y celdas de datos (td) */
-  th,
-  td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #dddddd;
-  }
+  /* 3. Estilo de borde básico y estándar */
+  border-collapse: collapse;
+}
 
-  /* Encabezado de la tabla */
-  thead th {
-    background-color: #007bff; /* Un azul moderno */
-    color: #ffffff;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  /* Cuerpo de la tabla */
-  tbody {
-    /* "Zebra stripes" para mejor legibilidad */
-    tr:nth-of-type(even) {
-      background-color: #f8f9fa;
-    }
-
-    /* Efecto hover para resaltar la fila */
-    tr:hover {
-      background-color: #e9ecef;
-      cursor: pointer;
-    }
-  }
-
-
-  /* --- La Magia Adaptativa (Vista Móvil) --- */
-  /* Se aplica en pantallas con un ancho máximo de 768px */
-  @media (max-width: 768px) {
-    
-    /* Ocultamos el encabezado original de la tabla */
-    thead {
-      display: none;
-    }
-
-    /* Rompemos la estructura de tabla para apilar los elementos */
-    table, tbody, tr, td {
-      display: block;
-      width: 100%;
-    }
-
-    /* Cada fila (tr) se convierte en una tarjeta */
-    tr {
-      margin-bottom: 1.5rem;
-      border: 1px solid #dddddd;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-
-      /* Evita que el hover de escritorio se aplique en móvil */
-      &:hover {
-        background-color: transparent;
-      }
-    }
-
-    /* Cada celda (td) se ajusta para mostrar su etiqueta */
-    td {
-      text-align: right; /* Alinea el contenido a la derecha */
-      padding-left: 50%; /* Deja espacio para la etiqueta */
-      position: relative;
-      border-bottom: 1px dotted #ccc;
-
-      /* Pseudo-elemento que crea la etiqueta a partir del atributo data-label */
-      &::before {
-        content: attr(data-label); /* Toma el texto del atributo data-label */
-        position: absolute;
-        left: 15px;
-        width: calc(50% - 30px);
-        padding-right: 10px;
-        font-weight: bold;
-        text-align: left;
-        color: #343a40;
-      }
-
-      /* La última celda de una tarjeta no necesita borde inferior */
-      &:last-child {
-        border-bottom: 0;
-      }
-    }
-  }
+.table th,
+.table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+  
+  /* 4. CLAVE: Si una palabra es muy larga o el espacio es muy pequeño,
+     se le permite romperse y continuar abajo. Esto previene el
+     desbordamiento horizontal (horizontal overflow). */
+  word-wrap: break-word;
 }
     </style>
     <div id="wrapper">
