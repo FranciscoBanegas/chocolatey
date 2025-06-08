@@ -1151,16 +1151,35 @@
                             </div>
                             <!-- end col -->
                         </div>
+                        <p>Chocolatey normalmente instala una sola versión de un paquete a la vez. Sin embargo, con algunos
+ajustes es posible mantener varias versiones de un mismo software instaladas en paralelo. La mejor práctica es
+crear paquetes con identificadores de nombre distintos para cada versión (por ejemplo,
+mysql.workbench8 para la versión 8 y mysql.workbench6 para la 6) 2 . A continuación se
+detalla, paso a paso, cómo lograr esto manualmente usando únicamente Chocolatey y herramientas
+estándar (sin necesidad de editores de paquetes externos).</p>
                         <!-- end row -->
-                        <h2> 📥 Descargar paquetes manualmente (sin dependencias por ahora)</h2>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the
-                                    readable content of a page when looking at its layout. The point of using Lorem
-                                    Ipsum is that it has a more-or-less normal distribution of letters, as opposed to
-                                    using 'Content here, content here', making it look like readable English. long
-                                    established fact that a reader will be distracted by the readable content of a page
-                                    when looking at its layout. The point of using Lorem Ipsum is that it has a
-                                    more-or-less normal distribution of letters, as opposed to using 'Content here,
-                                    content here', making it look like readable English.</p>
+                        <h2> 📥 Descarga de los paquetes <code>.nupkg</code> desde el portal de Chocolatey</h2>
+                                <p>El primer paso consiste en obtener los archivos de paquete ( .nupkg ) de las versiones deseadas de
+MySQL Workbench directamente desde el repositorio comunitario de Chocolatey. En la página del
+paquete MySQL Workbench en Chocolatey, existe una opción de Download para bajar el .nupkg de la
+versión seleccionada (normalmente en la barra lateral de la página del paquete). Chocolatey permite
+descargar el paquete completo desde el portal web para usos offline </p>
+                                    <img src="./images/docs/pm-2-chocolatey.png" alt="Descargar paquetes .nupkg">
+                        <h2  class="dark-text">Identificación y descarga de dependencias requeridas</h2>
+                        <p>Antes de proceder a instalar los paquetes localmente, es importante identificar las dependencias que
+cada versión de MySQL Workbench requiere. En la misma página de Chocolatey del paquete, busque la
+sección Dependencies (Dependencias). Para MySQL Workbench, típicamente aparece una dependencia
+a Microsoft Visual C++ Redistributable. Por ejemplo, versiones recientes de Workbench dependen de
+vcredist2015 (Visual C++ 2015-2019 Redistributable)</p>
+<img src="./images/docs/pm-3-chocolatey.png" alt="descargar dependencias">
+<p>Si una dependencia como vcredist2015 no estuviera ya instalada en el sistema o si se desea realizar
+la instalación completamente offline, se debe descargar también el .nupkg de esa dependencia
+desde Chocolatey. Para ello, busque el paquete correspondiente (por ejemplo, vcredist2015 en
+Chocolatey) y utilice igualmente el botón Download en su página para obtener el archivo .nupkg de
+la versión adecuada. Guarde este archivo junto con los .nupkg de MySQL Workbench descargados
+anteriormente.</p>
+<img src="./images/docs/pm-4-chocolatey.png" alt="descargar dependencias offline">
+
                     </section>
 
 
