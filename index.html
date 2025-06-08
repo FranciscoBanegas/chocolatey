@@ -92,7 +92,9 @@
                 border: 1px solid #202020;
             }
         }
-
+        img {
+    width: 100%;
+}
         ul.ul-list li {
             list-style: disc;
         }
@@ -1154,7 +1156,7 @@
                         <p>Chocolatey normalmente instala una sola versión de un paquete a la vez. Sin embargo, con algunos
 ajustes es posible mantener varias versiones de un mismo software instaladas en paralelo. La mejor práctica es
 crear paquetes con identificadores de nombre distintos para cada versión (por ejemplo,
-mysql.workbench8 para la versión 8 y mysql.workbench6 para la 6) 2 . A continuación se
+mysql.workbench8 para la versión 8 y mysql.workbench6 para la 6). A continuación se
 detalla, paso a paso, cómo lograr esto manualmente usando únicamente Chocolatey y herramientas
 estándar (sin necesidad de editores de paquetes externos).</p>
                         <!-- end row -->
@@ -1179,8 +1181,39 @@ Chocolatey) y utilice igualmente el botón Download en su página para obtener e
 la versión adecuada. Guarde este archivo junto con los .nupkg de MySQL Workbench descargados
 anteriormente.</p>
 <img src="./images/docs/pm-4-chocolatey.png" alt="descargar dependencias offline">
+<h2 class="dark-text">Extracción del paquete .nupkg original</h2>
+ <p>Una vez obtenidos los archivos <code>.nupkg</code> de MySQL Workbench (y sus dependencias), el siguiente paso
+es preparar el paquete para permitir instalaciones lado a lado. Un archivo .nupkg es esencialmente
+un archivo ZIP que contiene los metadatos y scripts de Chocolatey para el software. No se requiere
+ninguna herramienta externa especial para manipularlo: puede renombrarse la extensión a <code>.zip</code> y
+extraerse con el Explorador de Windows o utilizar una herramienta de descompresión común.</p>
+<br>
+<p>Utilice su método preferido para extraer el contenido de cada .nupkg de MySQL Workbench en
+carpetas separadas (por ejemplo, en una carpeta mysql.workbench6 para la versión 6.x y otra
+mysql.workbench8 para la 8.x). Dentro de cada carpeta encontrará varios archivos, entre ellos el
+archivo .nuspec que contiene la información del paquete (nombre, versión, dependencias, etc.) y una
+carpeta tools con los scripts de instalación (por ejemplo, <code>chocolateyInstall.ps1</code> ). 
+A continuación, localizaremos el archivo .nuspec para editarlo.</p>
 
-                    </section>
+<h2 class="dark-text">Modificación del archivo .nuspec (cambio de ID del paquete)</h2>
+<p>El paso clave para permitir múltiples instalaciones es modificar el identificador de paquete (ID) en el
+archivo .nuspec . Abra el archivo .nuspec extraído (por ejemplo, mysql.workbench.nuspec ) con
+un editor de texto plano. Busque la etiqueta XML <id> dentro del .nuspec . Esta etiqueta define el
+nombre del paquete tal como Chocolatey lo registra. Por defecto, para MySQL Workbench será algo
+como <code><id>mysql.workbench</id></code> .</p>
+<p>Reemplace el contenido de
+ <id>
+ por un nuevo identificador único que represente la versión
+específica. Por ejemplo, si está preparando el paquete para MySQL Workbench 8.0.x, podría usar
+<code><id>mysql.workbench8</id></code> (o mysql.workbench8.0 según prefiera nomenclatura). Para la
+versión 6.3.x, podría usar <code><id>mysql.workbench6</id> </code>. Este cambio de nombre asegura que
+Chocolatey tratará a cada versión como un paquete distinto, evitando conflictos de nombre. Es
+recomendable también ajustar la etiqueta <code><title></code> para que refleje la versión (por ejemplo, "MySQL
+Workbench 8.0.22") y así poder distinguir las instalaciones en interfaces gráficas, aunque esto es
+opcional y principalmente informativo. No modifique la etiqueta <code><version></code> : déjela con el número
+de versión original del software (ya que corresponde a la versión del software que estamos
+empaquetando, no de Chocolatey en sí). Guarde los cambios en el .nuspec .</p>
+</section>
 
 
                 </div>
