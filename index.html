@@ -1219,7 +1219,95 @@
                 empaquetando, no de Chocolatey en sí). Guarde los cambios en el .nuspec .</p>
 
             <img src="./images/docs/pm-12-chocolatey.png" alt="PAQUETES" />
+                <p>Nota: No es necesario alterar otros campos del .nuspec más allá del id (y el title
+si se desea). Las dependencias listadas (como vcredist2015 ) pueden permanecer
+igual, ya que seguiremos satisfaciéndolas con el mismo nombre de paquete de
+dependencia. Tampoco es necesario modificar los scripts de instalación en la carpeta
+tools en este caso, ya que seguimos instalando el mismo software; solo estamos
+renombrando el contenedor del paquete en Chocolatey.</p>
 
+<h2 class="dark-text">Reempaquetado del paquete modificado con Chocolatey</h2>
+<p>Después de haber editado el .nuspec con el nuevo ID, procedemos a reempaquetar el contenido en
+un nuevo archivo .nupkg . Chocolatey proporciona la herramienta de línea de comandos choco
+pack para este propósito. Asegúrese de estar ubicado en la carpeta donde extrajo el paquete y
+editó el .nuspec (es decir, donde reside el archivo .nuspec ). Desde una ventana de PowerShell o
+símbolo del sistema con privilegios de administrador, ejecute:</p>
+
+            <pre class="brush: html">
+                choco pack
+            </pre>
+<p>
+    Esto leerá el archivo .nuspec y generará un nuevo .nupkg con el nombre e id que especificamos.
+Por ejemplo, tras modificar
+ mysql.workbench.nuspec
+ a
+ id
+ "mysql.workbench8", al ejecutar
+choco
+ pack
+ se creará un archivo como
+ mysql.workbench8.<versión>.nupkg
+ (donde
+<versión> corresponderá a la versión de MySQL Workbench, p. ej. 8.0.22). Chocolatey mostrará un
+mensaje indicando que el paquete se empaquetó exitosamente.
+</p>
+<br>
+<p>Repita este proceso de empaquetado para cada versión que haya extraído y modificado. Al final, deberá
+contar con uno o más archivos .nupkg nuevos (recompilados) para MySQL Workbench, cada uno con
+un
+ identificador
+ único
+ (por
+ ejemplo,
+ mysql.workbench6.*.nupkg
+ y
+mysql.workbench8.*.nupkg ), además del .nupkg de la dependencia vcredist2015 (si es que
+no está ya instalada en el sistema).</p>
+
+<h2>Instalación de los paquetes desde la carpeta local con
+Chocolatey</h2>
+<p>
+    Una vez preparados los paquetes
+ .nupkg
+ modificados, podemos instalarlos usando Chocolatey
+apuntando a la ubicación local donde se encuentran. Reúna todos los archivos .nupkg (los de MySQL
+Workbench renombrados y el de cualquier dependencia descargada, como vcredist2015 ) en una
+misma
+ carpeta
+ para
+ mayor
+ facilidad.
+ Por
+ ejemplo,
+ podría
+ tener
+ una
+ carpeta
+ C:
+\Repositorios\ChocolateyLocal con:
+</p>
+<ul class="ul-list">
+    <li> mysql.workbench6.3.10.nupkg (paquete recompilado de Workbench 6.3.10, ID modificado
+a mysql.workbench6)</li>
+<li> mysql.workbench8.0.22.nupkg (paquete recompilado de Workbench 8.0.22, ID modificado
+a mysql.workbench8)</li>
+<li> vcredist2015.14.0.xx.nupkg (paquete de dependencia VC++ 2015, tal como se descargó)</li>
+</ul>
+<p>Para instalar desde esta ubicación, abra una consola de administrador en esa carpeta y ejecute choco
+install especificando el nombre del nuevo paquete y usando -s . para indicar que la fuente es el
+directorio actual (en vez de buscar en internet):</p>
+<pre class="brush: html">
+    choco install mysql.workbench8 --source=. -y
+</pre>
+<p>El parámetro -y auto-confirma la instalación. Chocolatey localizará el paquete mysql.workbench8
+en la carpeta (gracias a --source=. ) y empezará la instalación. Si el paquete tiene dependencias
+declaradas (por ejemplo vcredist2015 ), Chocolatey buscará también ese paquete en la fuente local.
+Asegúrese por tanto de que el .nupkg de cada dependencia requerida esté presente en la misma
+carpeta o que dicha dependencia ya esté instalada en el sistema.</p>
+<br>
+<p>Repita el comando de instalación para cada paquete de MySQL Workbench de versión distinta que haya
+preparado (por ejemplo, también choco install mysql.workbench6 --source=. -y para la
+versión 6.3.x). Cada uno se instalará como un paquete independiente en el sistema.</p>
         </div> </div> </section>
 
 
