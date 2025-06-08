@@ -1308,7 +1308,29 @@ carpeta o que dicha dependencia ya esté instalada en el sistema.</p>
 <p>Repita el comando de instalación para cada paquete de MySQL Workbench de versión distinta que haya
 preparado (por ejemplo, también choco install mysql.workbench6 --source=. -y para la
 versión 6.3.x). Cada uno se instalará como un paquete independiente en el sistema.</p>
-        </div> </div> </section>
+
+
+<h2>Verificación de múltiples versiones instaladas simultáneamente</h2>
+
+<p>Terminada la instalación, es importante verificar que las múltiples versiones de MySQL Workbench
+coexisten correctamente. Gracias a que cambiamos los identificadores de paquete, Chocolatey las
+registró como paquetes distintos, por lo que no entran en conflicto ni se reemplazan mutuamente.
+Podemos listar los paquetes instalados localmente para confirmar:</p>
+
+<pre class="brush: html">choco list --local-only mysql.workbench*</pre>
+<p>El resultado debe mostrar ambos paquetes, por ejemplo
+ mysql.workbench6
+ 6.3.10
+ y
+mysql.workbench8 8.0.22 (cada uno con su versión correspondiente), indicando que las dos
+versiones están instaladas lado a lado.</p>
+<br>
+<p>Adicionalmente, puede comprobar en el sistema operativo que ambas versiones de MySQL Workbench
+están disponibles. Por ejemplo, en el menú Inicio o en Agregar o quitar programas (Panel de control),
+deberían aparecer dos entradas separadas para MySQL Workbench, identificadas por su número de
+versión. Cada versión instalada funcionará de manera independiente, permitiendo lanzar una u otra
+según la necesidad. </p>
+</div> </div> </section>
 
 
                 </div>
