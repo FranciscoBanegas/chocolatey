@@ -155,7 +155,16 @@
                                 </ul>
                             </li>
                             <li><a href="#line4">🧰 Aprovisionamiento</a></li>
-                            <li><a href="#line5">📚 Instalar múltiples versiones del mismo paquete</a></li>
+                            <li><a href="#line5">📚 Instalar múltiples versiones del mismo paquete</a>
+                            <ul class="nav">
+                                    <li><a href="#line5_1">Descarga de los paquetes .nupkg desde el portal de Chocolatey </a></li>
+                                    <li><a href="#line5_2">Identificación y descarga de dependencias requeridas </a></li>
+                                    <li><a href="#line5_3">Extracción del paquete .nupkg original </a></li>
+                                    <li><a href="#line5_4">Modificación del archivo .nuspec (cambio de ID del paquete)</a></li>
+                                    <li><a href="#line5_5">Reempaquetado del paquete modificado con Chocolatey</a></li>
+                                    <li><a href="#line5_6">Instalación de los paquetes desde la carpeta local con Chocolatey</a></li>
+                                </ul>
+                            </li>
                             <!-- <li><a href="#line7">How to Use Option Panel</a>
                                 <ul class="nav">
                                     <li><a href="#line7_1">General Options</a></li>
@@ -1158,7 +1167,7 @@
                 detalla, paso a paso, cómo lograr esto manualmente usando únicamente Chocolatey y herramientas
                 estándar (sin necesidad de editores de paquetes externos).</p>
             
-            <h2> 📥 Descarga de los paquetes <code>.nupkg</code> desde el portal de Chocolatey</h2>
+            <h4> 📥 Descarga de los paquetes <code>.nupkg</code> desde el portal de Chocolatey</h4>
             <p>El primer paso consiste en obtener los archivos de paquete ( .nupkg ) de las versiones deseadas de
                 MySQL Workbench directamente desde el repositorio comunitario de Chocolatey. En la página del
                 paquete MySQL Workbench en Chocolatey, existe una opción de Download para bajar el .nupkg de la
@@ -1226,7 +1235,7 @@ dependencia. Tampoco es necesario modificar los scripts de instalación en la ca
 tools en este caso, ya que seguimos instalando el mismo software; solo estamos
 renombrando el contenedor del paquete en Chocolatey.</p>
 
-<h2 class="dark-text">Reempaquetado del paquete modificado con Chocolatey</h2>
+<h4 class="dark-text">Reempaquetado del paquete modificado con Chocolatey</h4>
 <p>Después de haber editado el .nuspec con el nuevo ID, procedemos a reempaquetar el contenido en
 un nuevo archivo .nupkg . Chocolatey proporciona la herramienta de línea de comandos choco
 pack para este propósito. Asegúrese de estar ubicado en la carpeta donde extrajo el paquete y
@@ -1264,8 +1273,8 @@ un
 mysql.workbench8.*.nupkg ), además del .nupkg de la dependencia vcredist2015 (si es que
 no está ya instalada en el sistema).</p>
 
-<h2>Instalación de los paquetes desde la carpeta local con
-Chocolatey</h2>
+<h4>Instalación de los paquetes desde la carpeta local con
+Chocolatey</h4>
 <p>
     Una vez preparados los paquetes
  .nupkg
@@ -1310,7 +1319,7 @@ preparado (por ejemplo, también choco install mysql.workbench6 --source=. -y pa
 versión 6.3.x). Cada uno se instalará como un paquete independiente en el sistema.</p>
 
 
-<h2>Verificación de múltiples versiones instaladas simultáneamente</h2>
+<h4>Verificación de múltiples versiones instaladas simultáneamente</h4>
 
 <p>Terminada la instalación, es importante verificar que las múltiples versiones de MySQL Workbench
 coexisten correctamente. Gracias a que cambiamos los identificadores de paquete, Chocolatey las
